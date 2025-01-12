@@ -66,109 +66,31 @@ th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
 
 
 
-// Első adat sor 
-const tr1 = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a táblázat adatait
-tbody.appendChild(tr1) // a sort hozzáfüzöm a tbodyhoz
+for (let i = 1; i < tomb.length; i++) { // vegigiteralok az arrayen
+    const tr_row = document.createElement('tr'); //létrehozunk egy tr elemet
+    tbody.appendChild(tr_row); //hozzáadom a tbodyhoz
 
+    // Nemzetiség cella csak akkorlesz , ha van érték
+    if (tomb[i].Nemzetiseg) {
+        const td = document.createElement('td');//létrehozunk egy cellát
+        td.innerHTML = tomb[i].Nemzetiseg;//megadjuk az értéket
+        if (tomb[i].Nemzetiseg === "Orosz" || tomb[i].Nemzetiseg === "Magyar") { //ha eljut az oroszhoz és a magyarhoz akkor
+            td.rowSpan = 2; // Sorok összekapcsolása
+        }
+        tr_row.appendChild(td); //ezt hozzáadjuk a trhez
+    }
 
-const td1 = document.createElement('td') //létrehozok egy tdt
-td1.innerHTML = tomb[1].Nemzetiseg //megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-td1.rowSpan = 2 //összeolvasztok 2 cellát igy az orosz az 2 sorba lesz
-tr1.appendChild(td1)//hozzáfűzöm a sorhoz
+    // Szerző cella csak akkor, ha van érték
+    if (tomb[i].szerzo) {
+        const td1 = document.createElement('td');//létrehozunk egy cellát
+        td1.innerHTML = tomb[i].szerzo;//megadjuk az értéket
+        tr_row.appendChild(td1);//ezt hozzáadjuk a trhez
+    }
 
-
-const td2 = document.createElement('td')//létrehozok egy tdt
-td2.innerHTML = tomb[1].szerzo//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr1.appendChild(td2)//hozzáfűzöm a sorhoz
-
-
-const td3 = document.createElement('td')//létrehozok egy tdt
-td3.innerHTML =tomb[1].mu //megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr1.appendChild(td3)//hozzáfűzöm a sorhoz
-
-// Második adat sor 
-const tr2 = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a táblázat adatait
-tbody.appendChild(tr2)// a sort hozzáfüzöm a tbodyhoz
-
- 
-
-
-const td4 = document.createElement('td')//létrehozok egy tdt
-td4.innerHTML = tomb[2].szerzo//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr2.appendChild(td4)//hozzáfűzöm a sorhoz
-
-
-const td5 = document.createElement('td')//létrehozok egy tdt
-td5.innerHTML = tomb[2].mu//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr2.appendChild(td5)//hozzáfűzöm a sorhoz
-
-// Harmadik adat sor 
-const tr3 = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a táblázat adatait
-tbody.appendChild(tr3)// a sort hozzáfüzöm a tbodyhoz
-
-const td6 = document.createElement('td')//létrehozok egy tdt
-td6.innerHTML = tomb[3].Nemzetiseg//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr3.appendChild(td6)//hozzáfűzöm a sorhoz
-
-
-const td7 = document.createElement('td')//létrehozok egy tdt
-td7.innerHTML =tomb[3].szerzo //megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr3.appendChild(td7)//hozzáfűzöm a sorhoz
-
-
-const td8 = document.createElement('td')//létrehozok egy tdt
-td8.innerHTML = tomb[3].mu//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr3.appendChild(td8)//hozzáfűzöm a sorhoz
-
-// Negyedik adat sor 
-const tr4 = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a táblázat adatait
-tbody.appendChild(tr4)// a sort hozzáfüzöm a tbodyhoz
-
-const td9 = document.createElement('td')//létrehozok egy tdt
-td9.innerHTML = tomb[4].Nemzetiseg //megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-td9.rowSpan = 2//összeolvasztok 2 cellát igy a magyar az 2 sorba lesz
-tr4.appendChild(td9)//hozzáfűzöm a sorhoz
-
-
-const td10 = document.createElement('td')//létrehozok egy tdt
-td10.innerHTML = tomb[4].szerzo//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr4.appendChild(td10)//hozzáfűzöm a sorhoz
-
-
-const td11 = document.createElement('td')//létrehozok egy tdt
-td11.innerHTML =tomb[4].mu //megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr4.appendChild(td11)//hozzáfűzöm a sorhoz
-
-// Ötödik adat sor 
-const tr5 = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a táblázat adatait
-tbody.appendChild(tr5)// a sort hozzáfüzöm a tbodyhoz
-
-
-
-const td12 = document.createElement('td')//létrehozok egy tdt
-td12.innerHTML = tomb[5].szerzo//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr5.appendChild(td12)//hozzáfűzöm a sorhoz
-
-
-const td13 = document.createElement('td')//létrehozok egy tdt
-td13.innerHTML = tomb[5].mu//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr5.appendChild(td13)//hozzáfűzöm a sorhoz
-
-// Hatodik adat sor 
-const tr6 = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a táblázat adatait
-tbody.appendChild(tr6)// a sort hozzáfüzöm a tbodyhoz
-
-
-const td14 = document.createElement('td')//létrehozok egy tdt
-td14.innerHTML = tomb[6].Nemzetiseg//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr6.appendChild(td14)//hozzáfűzöm a sorhoz
-
-
-const td15 = document.createElement('td')//létrehozok egy tdt
-td15.innerHTML = tomb[6].szerzo//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr6.appendChild(td15)//hozzáfűzöm a sorhoz
-
-
-const td16 = document.createElement('td')//létrehozok egy tdt
-td16.innerHTML = tomb[6].mu//megadom a cellának az adatát úgy hogy kiválasztom hanyadik elem és a helyes adatot beirom
-tr6.appendChild(td16)//hozzáfűzöm a sorhoz
+    // Mű cella csak akkor, ha van érték
+    if (tomb[i].mu) {
+        const td2 = document.createElement('td');//létrehozunk egy cellát
+        td2.innerHTML = tomb[i].mu;//megadjuk az értéket
+        tr_row.appendChild(td2);//ezt hozzáadjuk a trhez
+    }
+}
