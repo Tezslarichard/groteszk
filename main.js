@@ -66,7 +66,7 @@ th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
 
 
 
-
+function rendermenu(){ //definialom a fuggvenyem
 for (const futoka of tomb) { // vegigiteralok az arrayen
     const tr_row = document.createElement('tr'); //létrehozunk egy tr elemet
     tbody.appendChild(tr_row); //hozzáadom a tbodyhoz
@@ -95,3 +95,5 @@ for (const futoka of tomb) { // vegigiteralok az arrayen
         tr_row.appendChild(td2);//ezt hozzáadjuk a trhez
     }
 }
+}
+rendermenu() //meghivom a fuggvenyem
