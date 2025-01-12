@@ -10,22 +10,22 @@ table.appendChild(tbody) // a tbodyt hozzáadom a tablehez
 const th_tr = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a fejléc adatait
 thead.appendChild(th_tr)// th_tr elemet hozzá adom a theadhez
 
-const tomb = [{   //tombba eltárolom a cellák adatait
-        th_ertek : "Nemzetiség",
-        th_ertek1 : "Szerző",
-        th_ertek2 : "Mű"
-    },
+const thertekek =[{
+    th_ertek : "Nemzetiség",
+    th_ertek1 : "Szerző",
+    th_ertek2 : "Mű"
+}]
+const tomb = [   //tombba eltárolom a cellák adatait
     {  
         Nemzetiseg:"Orosz",
         szerzo :"Gogol",
-        mu :"A köpönyeg"
+        mu :"A köpönyeg",
+        szerzo2:"Csehov",
+        mu2 :"A csinovnyik halála"
+    },
         
-    },
-    { 
-        szerzo :"Csehov",
-        mu :"A csinovnyik halála"
     
-    },
+    
     { 
         Nemzetiseg :"Cseh",
         szerzo :"Franz Kafka",
@@ -34,11 +34,9 @@ const tomb = [{   //tombba eltárolom a cellák adatait
     {    
         Nemzetiseg :"Magyar",
         szerzo :"Örkény István",
-        mu :"Egyperces Novellák"
-    },
-    {   
-        Nemzetiseg :"József Attila",
-        szerzo :"Klárisok"
+        mu :"Egyperces Novellák",
+        szerzo2:"József Attila",
+        mu2 :"Klárisok"
     },
     {    
         Nemzetiseg :"Svájc",
@@ -51,49 +49,82 @@ const tomb = [{   //tombba eltárolom a cellák adatait
 
 
 const th1 = document.createElement('th')// létrehozunk egy th elemet ez a fejléc egyik cellája
-th1.innerHTML = tomb[0].th_ertek //megadom a tömböt és kiválasztom melyik kell
+th1.innerHTML = thertekek[0].th_ertek //megadom a tömböt és kiválasztom melyik kell
 th_tr.appendChild(th1) //hozzáfűzöm a sorhoz
 
 
 const th2 = document.createElement('th')// létrehozunk egy th elemet ez a fejléc egyik cellája
-th2.innerHTML =tomb[0].th_ertek1 //megadom a tömböt és kiválasztom melyik kell
+th2.innerHTML =thertekek[0].th_ertek1 //megadom a tömböt és kiválasztom melyik kell
 th_tr.appendChild(th2)//hozzáfűzöm a sorhoz
 
 
 const th3 = document.createElement('th')// létrehozunk egy th elemet ez a fejléc egyik cellája
-th3.innerHTML = tomb[0].th_ertek2//megadom a tömböt és kiválasztom melyik kell
+th3.innerHTML = thertekek[0].th_ertek2//megadom a tömböt és kiválasztom melyik kell
 th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
 
 
 
 function rendermenu(){ //definialom a fuggvenyem
-for (const futoka of tomb) { // vegigiteralok az arrayen
-    const tr_row = document.createElement('tr'); //létrehozunk egy tr elemet
-    tbody.appendChild(tr_row); //hozzáadom a tbodyhoz
+    for (const futoka of tomb) {
+        const tr_row = document.createElement('tr');
+        tbody.appendChild(tr_row);
 
-    // Nemzetiség cella csak akkorlesz , ha van érték
-    if (futoka.Nemzetiseg) {
-        const td = document.createElement('td');//létrehozunk egy cellát
-        td.innerHTML = futoka.Nemzetiseg;//megadjuk az értéket
-        if (futoka.Nemzetiseg === "Orosz" || futoka.Nemzetiseg === "Magyar") { //ha eljut az oroszhoz és a magyarhoz akkor
-            td.rowSpan = 2; // Sorok összekapcsolása
+        const nemzetiseg = document.createElement('td');
+        nemzetiseg.innerHTML = futoka.Nemzetiseg;
+        tr_row.appendChild(nemzetiseg);
+
+        const szerzo1 = document.createElement('td');
+        szerzo1.innerHTML = futoka.szerzo;
+        tr_row.appendChild(szerzo1);
+
+        const mu1 = document.createElement('td');
+        mu1.innerHTML = futoka.mu;
+        tr_row.appendChild(mu1);
+
+        if (futoka.szerzo2 && futoka.mu2 ) {
+            const tr_row2 = document.createElement('tr');
+            tbody.appendChild(tr_row2);
+            nemzetiseg.rowSpan = 2;
+
+            const szerzo3 = document.createElement('td');
+            szerzo3.innerHTML = futoka.szerzo2;
+            tr_row2.appendChild(szerzo3);
+
+            const mu3 = document.createElement('td');
+            mu3.innerHTML = futoka.mu2;
+            tr_row2.appendChild(mu3);
         }
-        tr_row.appendChild(td); //ezt hozzáadjuk a trhez
-    }
-
-    // Szerző cella csak akkor, ha van érték
-    if (futoka.szerzo) {
-        const td1 = document.createElement('td');//létrehozunk egy cellát
-        td1.innerHTML = futoka.szerzo;//megadjuk az értéket
-        tr_row.appendChild(td1);//ezt hozzáadjuk a trhez
-    }
-
-    // Mű cella csak akkor, ha van érték
-    if (futoka.mu) {
-        const td2 = document.createElement('td');//létrehozunk egy cellát
-        td2.innerHTML = futoka.mu;//megadjuk az értéket
-        tr_row.appendChild(td2);//ezt hozzáadjuk a trhez
     }
 }
-}
+
 rendermenu() //meghivom a fuggvenyem
+
+
+//const form = document.createElement('form')
+//
+//form.addEventListener('submit',function(e){
+//    e.preventDefault();
+//    const nemzetiseghtml = document.getElementById('szarmazas')
+//    const szerzokhtml = document.getElementById('szerzo1')
+//    const szerzo1muve = document.getElementById('szerzo1mu')
+//    const szerzo2muve = document.getElementById('szerzo2')
+//    const szerzo2html = document.getElementById('szerzo2mu')
+//
+//
+//    const nemzetiseghtmlValue = nemzetiseghtml.value
+//    const szerzokhtmlValue = szerzokhtml.value
+//    const szerzo1muveValue = szerzo1muve.value
+//    const szerzo2muveValue = szerzo2muve.value
+//    const szerzo2htmlValue = szerzo2html.value
+//
+//
+//    const new_elements = {
+//        Nemzetiseg: nemzetiseghtmlValue,
+//        szerzo: szerzokhtmlValue,
+//        mu:szerzo1muveValue
+//    }
+
+
+
+
+//})
