@@ -66,31 +66,32 @@ th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
 
 
 
-for (let i = 1; i < tomb.length; i++) { // vegigiteralok az arrayen
+
+for (const futoka of tomb) { // vegigiteralok az arrayen
     const tr_row = document.createElement('tr'); //létrehozunk egy tr elemet
     tbody.appendChild(tr_row); //hozzáadom a tbodyhoz
 
     // Nemzetiség cella csak akkorlesz , ha van érték
-    if (tomb[i].Nemzetiseg) {
+    if (futoka.Nemzetiseg) {
         const td = document.createElement('td');//létrehozunk egy cellát
-        td.innerHTML = tomb[i].Nemzetiseg;//megadjuk az értéket
-        if (tomb[i].Nemzetiseg === "Orosz" || tomb[i].Nemzetiseg === "Magyar") { //ha eljut az oroszhoz és a magyarhoz akkor
+        td.innerHTML = futoka.Nemzetiseg;//megadjuk az értéket
+        if (futoka.Nemzetiseg === "Orosz" || futoka.Nemzetiseg === "Magyar") { //ha eljut az oroszhoz és a magyarhoz akkor
             td.rowSpan = 2; // Sorok összekapcsolása
         }
         tr_row.appendChild(td); //ezt hozzáadjuk a trhez
     }
 
     // Szerző cella csak akkor, ha van érték
-    if (tomb[i].szerzo) {
+    if (futoka.szerzo) {
         const td1 = document.createElement('td');//létrehozunk egy cellát
-        td1.innerHTML = tomb[i].szerzo;//megadjuk az értéket
+        td1.innerHTML = futoka.szerzo;//megadjuk az értéket
         tr_row.appendChild(td1);//ezt hozzáadjuk a trhez
     }
 
     // Mű cella csak akkor, ha van érték
-    if (tomb[i].mu) {
+    if (futoka.mu) {
         const td2 = document.createElement('td');//létrehozunk egy cellát
-        td2.innerHTML = tomb[i].mu;//megadjuk az értéket
+        td2.innerHTML = futoka.mu;//megadjuk az értéket
         tr_row.appendChild(td2);//ezt hozzáadjuk a trhez
     }
 }
