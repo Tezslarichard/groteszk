@@ -65,35 +65,35 @@ th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
 
 
 function rendermenu(){ //definialom a fuggvenyem
-   tbody.innerHTML = " "
-    for (const futoka of tomb) {
-        const tr_row = document.createElement('tr');
-        tbody.appendChild(tr_row);
+   tbody.innerHTML = " " //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
+    for (const futoka of tomb) { //vegig iterálok a cikluson 
+        const tr_row = document.createElement('tr'); // letrehozok egy sort
+        tbody.appendChild(tr_row); // ezt a sort hozzáadom a tbodyhoz
 
-        const nemzetiseg = document.createElement('td');
-        nemzetiseg.innerHTML = futoka.Nemzetiseg;
-        tr_row.appendChild(nemzetiseg);
+        const nemzetiseg = document.createElement('td'); //letre hozok egy cellat a nemzetisegeknek
+        nemzetiseg.innerHTML = futoka.Nemzetiseg; // megadom az értékét
+        tr_row.appendChild(nemzetiseg); //hozzaadom a sorhoz
 
-        const szerzo1 = document.createElement('td');
-        szerzo1.innerHTML = futoka.szerzo;
-        tr_row.appendChild(szerzo1);
+        const szerzo1 = document.createElement('td');//letre hozok egy cellat a szerzo1nek
+        szerzo1.innerHTML = futoka.szerzo;// megadom az értékét
+        tr_row.appendChild(szerzo1);//hozzaadom a sorhoz
 
-        const mu1 = document.createElement('td');
-        mu1.innerHTML = futoka.mu;
-        tr_row.appendChild(mu1);
+        const mu1 = document.createElement('td');//letre hozok egy cellat a mu1nek
+        mu1.innerHTML = futoka.mu;// megadom az értékét
+        tr_row.appendChild(mu1);//hozzaadom a sorhoz
 
-        if (futoka.szerzo2 && futoka.mu2 ) {
-            const tr_row2 = document.createElement('tr');
-            tbody.appendChild(tr_row2);
-            nemzetiseg.rowSpan = 2;
+        if (futoka.szerzo2 && futoka.mu2 ) { //hogyha van szero2 és mu2 akkor 
+            const tr_row2 = document.createElement('tr');// letrehozok egy sort
+            tbody.appendChild(tr_row2);// ezt a sort hozzáadom a tbodyhoz
+            nemzetiseg.rowSpan = 2; // a nemzetisegek 2 cellányi legyen
 
-            const szerzo3 = document.createElement('td');
-            szerzo3.innerHTML = futoka.szerzo2;
+            const szerzo3 = document.createElement('td'); //letre hozok egy cellat a szerzo2nek
+            szerzo3.innerHTML = futoka.szerzo2;// megadom az értékét
             tr_row2.appendChild(szerzo3);
 
-            const mu3 = document.createElement('td');
-            mu3.innerHTML = futoka.mu2;
-            tr_row2.appendChild(mu3);
+            const mu3 = document.createElement('td');//letre hozok egy cellat a mu2nek
+            mu3.innerHTML = futoka.mu2;// megadom az értékét
+            tr_row2.appendChild(mu3);//hozzaadom a sorhoz
         }
     }
 }
@@ -101,31 +101,31 @@ function rendermenu(){ //definialom a fuggvenyem
 rendermenu() //meghivom a fuggvenyem
 
 
-const form = document.getElementById('form')
+const form = document.getElementById('form') // elkerem a form htmlelementet idval
 
-form.addEventListener('submit',function(e){
-    e.preventDefault();
-    const nemzetiseghtml = document.getElementById('szarmazas')
-    const szerzokhtml = document.getElementById('szerzo1')
-    const szerzo1muve = document.getElementById('szerzo1mu')
-    const szerzo2muve = document.getElementById('szerzo2')
-    const szerzo2html = document.getElementById('szerzo2mu')
-
-
-    const nemzetiseghtmlValue = nemzetiseghtml.value
-    const szerzokhtmlValue = szerzokhtml.value
-    const szerzo1muveValue = szerzo1muve.value
-    const szerzo2muveValue = szerzo2muve.value
-    const szerzo2htmlValue = szerzo2html.value
+form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot ami a submit lesz
+    e.preventDefault(); //megakadalyozom, hogy a bongeszo alapertelmezett mukodese lefusson submit eseten
+    const nemzetiseghtml = document.getElementById('szarmazas')//elkerem a htmlelementet, amely a szarmazas idval rendelkezik
+    const szerzokhtml = document.getElementById('szerzo1')//elkerem a htmlelementet, amely a szerzo1 idval rendelkezik
+    const szerzo1muve = document.getElementById('szerzo1mu')//elkerem a htmlelementet, amely a szero1mu idval rendelkezik
+    const szerzo2muve = document.getElementById('szerzo2')//elkerem a htmlelementet, amely a szerzo2 idval rendelkezik
+    const szerzo2html = document.getElementById('szerzo2mu')//elkerem a htmlelementet, amely a szerzo2mu idval rendelkezik
 
 
-    const new_elements = {
+    const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
+    const szerzokhtmlValue = szerzokhtml.value// a value értékeket beteszem egy valtozoba
+    const szerzo1muveValue = szerzo1muve.value// a value értékeket beteszem egy valtozoba
+    const szerzo2muveValue = szerzo2muve.value// a value értékeket beteszem egy valtozoba
+    const szerzo2htmlValue = szerzo2html.value// a value értékeket beteszem egy valtozoba
+
+
+    const new_elements = {  //az objektumba eltárolom az uj értékeket
         Nemzetiseg: nemzetiseghtmlValue,
         szerzo: szerzokhtmlValue,
         mu:szerzo1muveValue,
         szerzo2 : szerzo2muveValue,
         mu2 : szerzo2htmlValue
     }
-    tomb.push(new_elements)
-    rendermenu()
+    tomb.push(new_elements) // hozzaadom a tombhoz
+    rendermenu() //ujra render fuggveny
 })
