@@ -65,6 +65,7 @@ th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
 
 
 function rendermenu(){ //definialom a fuggvenyem
+   tbody.innerHTML = " "
     for (const futoka of tomb) {
         const tr_row = document.createElement('tr');
         tbody.appendChild(tr_row);
@@ -100,31 +101,31 @@ function rendermenu(){ //definialom a fuggvenyem
 rendermenu() //meghivom a fuggvenyem
 
 
-//const form = document.createElement('form')
-//
-//form.addEventListener('submit',function(e){
-//    e.preventDefault();
-//    const nemzetiseghtml = document.getElementById('szarmazas')
-//    const szerzokhtml = document.getElementById('szerzo1')
-//    const szerzo1muve = document.getElementById('szerzo1mu')
-//    const szerzo2muve = document.getElementById('szerzo2')
-//    const szerzo2html = document.getElementById('szerzo2mu')
-//
-//
-//    const nemzetiseghtmlValue = nemzetiseghtml.value
-//    const szerzokhtmlValue = szerzokhtml.value
-//    const szerzo1muveValue = szerzo1muve.value
-//    const szerzo2muveValue = szerzo2muve.value
-//    const szerzo2htmlValue = szerzo2html.value
-//
-//
-//    const new_elements = {
-//        Nemzetiseg: nemzetiseghtmlValue,
-//        szerzo: szerzokhtmlValue,
-//        mu:szerzo1muveValue
-//    }
+const form = document.getElementById('form')
+
+form.addEventListener('submit',function(e){
+    e.preventDefault();
+    const nemzetiseghtml = document.getElementById('szarmazas')
+    const szerzokhtml = document.getElementById('szerzo1')
+    const szerzo1muve = document.getElementById('szerzo1mu')
+    const szerzo2muve = document.getElementById('szerzo2')
+    const szerzo2html = document.getElementById('szerzo2mu')
 
 
+    const nemzetiseghtmlValue = nemzetiseghtml.value
+    const szerzokhtmlValue = szerzokhtml.value
+    const szerzo1muveValue = szerzo1muve.value
+    const szerzo2muveValue = szerzo2muve.value
+    const szerzo2htmlValue = szerzo2html.value
 
 
-//})
+    const new_elements = {
+        Nemzetiseg: nemzetiseghtmlValue,
+        szerzo: szerzokhtmlValue,
+        mu:szerzo1muveValue,
+        szerzo2 : szerzo2muveValue,
+        mu2 : szerzo2htmlValue
+    }
+    tomb.push(new_elements)
+    rendermenu()
+})
