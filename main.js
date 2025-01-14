@@ -42,7 +42,7 @@ const tomb = [   //tombba eltárolom a cellák adatait
 ]
 
 function fejlecem(){
-    const thertekek =[
+    const thertekek =[ //eltárolom az értékeket egy tömbben
         "Nemzetiség",
         "Szerző",
         "Mű"
@@ -51,10 +51,10 @@ function fejlecem(){
     const th_tr = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a fejléc adatait
     thead.appendChild(th_tr)// th_tr elemet hozzá adom a theadhez
 
-    for (const futulu of thertekek){
-    const th1 = document.createElement('th')
-    th1.innerHTML = futulu
-    th_tr.appendChild(th1)
+    for (const futulu of thertekek){ //végig iterálunk a tömbbön
+    const th1 = document.createElement('th') //csinálunk th cellákat
+    th1.innerHTML = futulu //megadom az értékeket
+    th_tr.appendChild(th1) //hozzáfüzöm a sorhoz a cellát
     }
 }
 
