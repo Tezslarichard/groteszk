@@ -111,14 +111,47 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     const szerzo2muve = document.getElementById('szerzo2')//elkerem a htmlelementet, amely a szerzo2 idval rendelkezik
     const szerzo2html = document.getElementById('szerzo2mu')//elkerem a htmlelementet, amely a szerzo2mu idval rendelkezik
 
-
+    const  forma = e.currentTarget //a currenttarget tulajdonsaga a formunkat tartalmazza
+    const hiba = forma.querySelectorAll('.error') //az összes error classal ellátot htmlelemntet elkerjuk
+    for(const errorhiba of hiba){ //vegigiiteralunk az osszes visszakapott errorhtmlelementen
+        errorhiba.innerHTML = "" //töröljük az aktuális elem tartalmat
+    }
+    
+    let valid = true//validot igazra allitjuk
     const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
     const szerzokhtmlValue = szerzokhtml.value// a value értékeket beteszem egy valtozoba
     const szerzo1muveValue = szerzo1muve.value// a value értékeket beteszem egy valtozoba
     const szerzo2muveValue = szerzo2muve.value// a value értékeket beteszem egy valtozoba
     const szerzo2htmlValue = szerzo2html.value// a value értékeket beteszem egy valtozoba
 
+    if(nemzetiseghtmlValue === ''){ //ha a nemzetiseg ures
+        const parentElement = nemzetiseghtml.parentElement; //eltaroljuk a nemzetiseg elemjeit egy valtozoba
+        const errorhely = parentElement.querySelector('.error')//az  error classal ellátot htmlelemntet belerakom egy valtozoba
+        if(errorhely != undefined){ //ha talalunk ilyen mezot ami nem undefined
+            errorhely.innerHTML = ' A származás kötelező'//hibauzenetet ir ki akkor
+        }
+        valid = false; //vissza allitom az erteket hamisra
+    }
 
+    if(szerzokhtmlValue === ''){//ha a szerzok elem ures
+        const parentElement = szerzokhtml.parentElement; //eltaroljuk a szerzok elemjeit egy valtozoba
+        const errorhely = parentElement.querySelector('.error')//az  error classal ellátot htmlelemntet belerakom egy valtozoba
+        if(errorhely != undefined){//ha talalunk ilyen mezot ami nem undefined
+            errorhely.innerHTML = ' A szerző neve kötelező'//hibauzenetet ir ki akkor
+        }
+        valid = false;//vissza allitom az erteket hamisra
+    }
+
+    if(szerzo1muveValue === ''){//ha a mu elem ures
+        const parentElement = szerzo1muve.parentElement;//eltaroljuk a munek az elemjeit egy valtozoba
+        const errorhely = parentElement.querySelector('.error')//az  error classal ellátot htmlelemntet belerakom egy valtozoba
+        if(errorhely != undefined){//ha talalunk ilyen mezot ami nem undefined
+            errorhely.innerHTML = ' A szerző műve kötelező' //hibauzenetet ir ki akkor
+        }
+        valid = false;//vissza allitom az erteket hamisra
+    }
+
+    if(valid){ //hogyha valid
     const new_elements = {  //az objektumba eltárolom az uj értékeket
         Nemzetiseg: nemzetiseghtmlValue,
         szerzo: szerzokhtmlValue,
@@ -127,5 +160,6 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
         mu2 : szerzo2htmlValue
     }
     tomb.push(new_elements) // hozzaadom a tombhoz
+    
     rendermenu() //ujra render fuggveny
-})
+}})
