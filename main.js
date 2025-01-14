@@ -40,13 +40,13 @@ const tomb = [   //tombba eltárolom a cellák adatait
     
         
 ]
-
-function fejlecem(){
-    const thertekek =[ //eltárolom az értékeket egy tömbben
+const thertekek =[ //eltárolom az értékeket egy tömbben
         "Nemzetiség",
         "Szerző",
         "Mű"
     ]
+function fejlecem(thertekek){
+    
 
     const th_tr = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a fejléc adatait
     thead.appendChild(th_tr)// th_tr elemet hozzá adom a theadhez
@@ -59,7 +59,7 @@ function fejlecem(){
 }
 
 
-function rendermenu(){ //definialom a fuggvenyem
+function rendermenu(tomb){ //definialom a fuggvenyem
    tbody.innerHTML = " " //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
     for (const futoka of tomb) { //vegig iterálok a cikluson 
         const tr_row = document.createElement('tr'); // letrehozok egy sort
@@ -93,7 +93,7 @@ function rendermenu(){ //definialom a fuggvenyem
     }
 }
 
-rendermenu() //meghivom a fuggvenyem
+rendermenu(tomb) //meghivom a fuggvenyem
 
 
 const form = document.getElementById('form') // elkerem a form htmlelementet idval
@@ -129,7 +129,7 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     }
     tomb.push(new_elements) // hozzaadom a tombhoz
     
-    rendermenu() //ujra render fuggveny
+    rendermenu(tomb) //ujra render fuggveny
 }})
 
 function egyszeruvalidacio(nemzetiseg_input, szerzo_input,mu_input){//definiálom a függvényem
@@ -164,4 +164,4 @@ function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validate
 
     return valid; // visszaterek a valid valtozoval
 }
-fejlecem()
+fejlecem(thertekek)
