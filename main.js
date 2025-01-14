@@ -118,21 +118,8 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     }
     
     
-    let valid = true//validot igazra allitjuk
-
-    if(!validateForm(nemzetiseghtml, "A nemzetiség kötelező")) //validáljuk a nemzetiség mezőt
-    {
-        valid = false //validot hamisra allitom
-    }
-    if(!validateForm(szerzokhtml, "A szerző kötelező"))//validáljuk a szerző mezőt
-        {
-            valid = false//validot hamisra allitom
-        }
-    if(!validateForm(szerzo1muve, "A mű kötelező"))//validáljuk a mű mezőt
-        {
-            valid = false//validot hamisra allitom
-        }
-    if(valid){ //hogyha valid
+  
+    if(egyszeruvalidacio(nemzetiseghtml,szerzokhtml,szerzo1muve)){ //ha minden mező megvan adva
     
     const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
     const szerzokhtmlValue = szerzokhtml.value// a value értékeket beteszem egy valtozoba
@@ -151,6 +138,22 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     rendermenu() //ujra render fuggveny
 }})
 
+function egyszeruvalidacio(nemzetiseg_input, szerzo_input,mu_input){//definiálom a függvényem
+    let valid = true//validot igazra allitjuk
+
+    if(!validateForm(nemzetiseg_input, "A nemzetiség kötelező")) //validáljuk a nemzetiség mezőt
+    {
+        valid = false //validot hamisra allitom
+    }
+    if(!validateForm(szerzo_input, "A szerző kötelező"))//validáljuk a szerző mezőt
+        {
+            valid = false//validot hamisra allitom
+        }
+    if(!validateForm(mu_input, "A mű kötelező"))//validáljuk a mű mezőt
+        {
+            valid = false//validot hamisra allitom
+        }
+}
 
 function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validateForm fuggvenyt
     let valid = true; // a valid erteket igazra allitom
