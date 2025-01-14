@@ -118,6 +118,8 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     }
     
     
+   
+    
   
     if(egyszeruvalidacio(nemzetiseghtml,szerzokhtml,szerzo1muve)){ //ha minden mező megvan adva
     
@@ -153,6 +155,8 @@ function egyszeruvalidacio(nemzetiseg_input, szerzo_input,mu_input){//definiálo
         {
             valid = false//validot hamisra allitom
         }
+
+        return valid
 }
 
 function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validateForm fuggvenyt
