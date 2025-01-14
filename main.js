@@ -6,15 +6,9 @@ document.body.appendChild(table) // a tablet hozzáadom a htmlhez
 table.appendChild(thead) // a theadet hozzáadom a tablehez
 table.appendChild(tbody) // a tbodyt hozzáadom a tablehez
 
-// Fejléc sor hozzáadása
-const th_tr = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a fejléc adatait
-thead.appendChild(th_tr)// th_tr elemet hozzá adom a theadhez
 
-const thertekek =[{
-    th_ertek : "Nemzetiség",
-    th_ertek1 : "Szerző",
-    th_ertek2 : "Mű"
-}]
+
+
 const tomb = [   //tombba eltárolom a cellák adatait
     {  
         Nemzetiseg:"Orosz",
@@ -47,21 +41,22 @@ const tomb = [   //tombba eltárolom a cellák adatait
         
 ]
 
+function fejlecem(){
+    const thertekek =[
+        "Nemzetiség",
+        "Szerző",
+        "Mű"
+    ]
 
-const th1 = document.createElement('th')// létrehozunk egy th elemet ez a fejléc egyik cellája
-th1.innerHTML = thertekek[0].th_ertek //megadom a tömböt és kiválasztom melyik kell
-th_tr.appendChild(th1) //hozzáfűzöm a sorhoz
+    const th_tr = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a fejléc adatait
+    thead.appendChild(th_tr)// th_tr elemet hozzá adom a theadhez
 
-
-const th2 = document.createElement('th')// létrehozunk egy th elemet ez a fejléc egyik cellája
-th2.innerHTML =thertekek[0].th_ertek1 //megadom a tömböt és kiválasztom melyik kell
-th_tr.appendChild(th2)//hozzáfűzöm a sorhoz
-
-
-const th3 = document.createElement('th')// létrehozunk egy th elemet ez a fejléc egyik cellája
-th3.innerHTML = thertekek[0].th_ertek2//megadom a tömböt és kiválasztom melyik kell
-th_tr.appendChild(th3)//hozzáfűzöm a sorhoz
-
+    for (const futulu of thertekek){
+    const th1 = document.createElement('th')
+    th1.innerHTML = futulu
+    th_tr.appendChild(th1)
+    }
+}
 
 
 function rendermenu(){ //definialom a fuggvenyem
@@ -117,10 +112,7 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
         errorhiba.innerHTML = "" //töröljük az aktuális elem tartalmat
     }
     
-    
-   
-    
-  
+
     if(egyszeruvalidacio(nemzetiseghtml,szerzokhtml,szerzo1muve)){ //ha minden mező megvan adva
     
     const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
@@ -172,3 +164,4 @@ function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validate
 
     return valid; // visszaterek a valid valtozoval
 }
+fejlecem()
