@@ -40,13 +40,16 @@ const tomb = [   //tombba eltárolom a cellák adatait
     
         
 ]
-const thertekek =[ //eltárolom az értékeket egy tömbben
+/**
+ * csinálok egy tömböt amiben eltárolom az értékeket, utánna létrehozok egy sort amiben majd a for vegigiterál 
+ * a tömbömön és ahány elem van annyi cellát csinál majd beirja az értékeit
+ */
+function fejlecem(){
+    const thertekek =[ //eltárolom az értékeket egy tömbben
         "Nemzetiség",
         "Szerző",
         "Mű"
     ]
-function fejlecem(thertekek){
-    
 
     const th_tr = document.createElement('tr')// létrehozunk egy tr elemet amibe tárolni fogjuk a fejléc adatait
     thead.appendChild(th_tr)// th_tr elemet hozzá adom a theadhez
@@ -58,9 +61,13 @@ function fejlecem(thertekek){
     }
 }
 
-
+/**
+ * Ez a függvényem lefogja generálni a táblázatomat ami megint ugyan ugy fog történni mint a fejlécnél, és ha van szerzo2 és
+ *  mu2 akkor létrehoz egy sort hogyha nincsen akkor nem fog
+ * @param {Array} tomb 
+ */
 function rendermenu(tomb){ //definialom a fuggvenyem
-   tbody.innerHTML = " " //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
+   
     for (const futoka of tomb) { //vegig iterálok a cikluson 
         const tr_row = document.createElement('tr'); // letrehozok egy sort
         tbody.appendChild(tr_row); // ezt a sort hozzáadom a tbodyhoz
@@ -92,7 +99,10 @@ function rendermenu(tomb){ //definialom a fuggvenyem
         }
     }
 }
-
+/**
+ * legenerálom a formomat amiben minden elem benne van gomb stb meg ahol megtudjuk adni az adatokat amit feltudunk tölteni. 
+ * Ehhez minden idt namet es fort megkellet adni
+ */
 function generateform(){ //létrehozom a függvényt
     
     const form1 = document.createElement('form') //létrehozok egy formot
@@ -119,8 +129,8 @@ function generateform(){ //létrehozom a függvényt
 
 
     const span = document.createElement('span') // létrehozok egy spant
-    span.classList.add('error')                 //adok neki egy classt
-    div.appendChild(span)                       // ezt hozzáfüzöm a divemhez
+    span.classList.add('error')//adok neki egy classt
+    div.appendChild(span)// ezt hozzáfüzöm a divemhez
 
 
     const div1 = document.createElement('div')//létrehozok egy divet
@@ -253,10 +263,19 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
         mu2 : szerzo2htmlValue
     }
     tomb.push(new_elements) // hozzaadom a tombhoz
-    
+    form.reset()
+    tbody.innerHTML = " " //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
     rendermenu(tomb) //ujra render fuggveny
+    
 }})
-
+/**
+ * hogyha nem igaz az ez alatti fuggveny akkor kiirja a hibauzenetemet
+ * 
+ * @param {HTMLElement} nemzetiseg_input 
+ * @param {HTMLElement} szerzo_input 
+ * @param {HTMLElement} mu_input 
+ * @returns {boolean}
+ */
 function egyszeruvalidacio(nemzetiseg_input, szerzo_input,mu_input){//definiálom a függvényem
     let valid = true//validot igazra allitjuk
 
@@ -275,7 +294,12 @@ function egyszeruvalidacio(nemzetiseg_input, szerzo_input,mu_input){//definiálo
 
         return valid
 }
-
+/**
+ * hogyha az inputhtmlElement ures akkor eltarolom ezt és megkeressük azt az első elemet amin  egy class van ha megtörténik ez akkor beleirjuk a hibauzenetet
+ * @param {HTMLElement} inputhtmlElement 
+ * @param {string} erroruezenet 
+ * @returns {boolean}
+ */
 function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validateForm fuggvenyt
     let valid = true; // a valid erteket igazra allitom
     if(inputhtmlElement.value === ''){ // ha a parameterben kapott beviteli mezo ures
@@ -289,7 +313,7 @@ function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validate
 
     return valid; // visszaterek a valid valtozoval
 }
-fejlecem(thertekek)
+fejlecem() //fuggvenyemet meghivom
 
 
 
