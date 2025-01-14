@@ -117,41 +117,28 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
         errorhiba.innerHTML = "" //töröljük az aktuális elem tartalmat
     }
     
+    
     let valid = true//validot igazra allitjuk
+
+    if(!validateForm(nemzetiseghtml, "A nemzetiség kötelező")) //validáljuk a nemzetiség mezőt
+    {
+        valid = false //validot hamisra allitom
+    }
+    if(!validateForm(szerzokhtml, "A szerző kötelező"))//validáljuk a szerző mezőt
+        {
+            valid = false//validot hamisra allitom
+        }
+    if(!validateForm(szerzo1muve, "A mű kötelező"))//validáljuk a mű mezőt
+        {
+            valid = false//validot hamisra allitom
+        }
+    if(valid){ //hogyha valid
+    
     const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
     const szerzokhtmlValue = szerzokhtml.value// a value értékeket beteszem egy valtozoba
     const szerzo1muveValue = szerzo1muve.value// a value értékeket beteszem egy valtozoba
     const szerzo2muveValue = szerzo2muve.value// a value értékeket beteszem egy valtozoba
     const szerzo2htmlValue = szerzo2html.value// a value értékeket beteszem egy valtozoba
-
-    if(nemzetiseghtmlValue === ''){ //ha a nemzetiseg ures
-        const parentElement = nemzetiseghtml.parentElement; //eltaroljuk a nemzetiseg elemjeit egy valtozoba
-        const errorhely = parentElement.querySelector('.error')//az  error classal ellátot htmlelemntet belerakom egy valtozoba
-        if(errorhely != undefined){ //ha talalunk ilyen mezot ami nem undefined
-            errorhely.innerHTML = ' A származás kötelező'//hibauzenetet ir ki akkor
-        }
-        valid = false; //vissza allitom az erteket hamisra
-    }
-
-    if(szerzokhtmlValue === ''){//ha a szerzok elem ures
-        const parentElement = szerzokhtml.parentElement; //eltaroljuk a szerzok elemjeit egy valtozoba
-        const errorhely = parentElement.querySelector('.error')//az  error classal ellátot htmlelemntet belerakom egy valtozoba
-        if(errorhely != undefined){//ha talalunk ilyen mezot ami nem undefined
-            errorhely.innerHTML = ' A szerző neve kötelező'//hibauzenetet ir ki akkor
-        }
-        valid = false;//vissza allitom az erteket hamisra
-    }
-
-    if(szerzo1muveValue === ''){//ha a mu elem ures
-        const parentElement = szerzo1muve.parentElement;//eltaroljuk a munek az elemjeit egy valtozoba
-        const errorhely = parentElement.querySelector('.error')//az  error classal ellátot htmlelemntet belerakom egy valtozoba
-        if(errorhely != undefined){//ha talalunk ilyen mezot ami nem undefined
-            errorhely.innerHTML = ' A szerző műve kötelező' //hibauzenetet ir ki akkor
-        }
-        valid = false;//vissza allitom az erteket hamisra
-    }
-
-    if(valid){ //hogyha valid
     const new_elements = {  //az objektumba eltárolom az uj értékeket
         Nemzetiseg: nemzetiseghtmlValue,
         szerzo: szerzokhtmlValue,
@@ -163,3 +150,18 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     
     rendermenu() //ujra render fuggveny
 }})
+
+
+function validateForm(inputhtmlElement, erroruezenet){ // definialjuk a validateForm fuggvenyt
+    let valid = true; // a valid erteket igazra allitom
+    if(inputhtmlElement.value === ''){ // ha a parameterben kapott beviteli mezo ures
+        const parentElement = inputhtmlElement.parentElement; // eltaroljuk egy valtozoba 
+        const errormaskara = parentElement.querySelector('.error'); // megkeressuk azt az elso elemet ami error classal van
+        if(errormaskara != undefined) { // Ha talaltunk ilyen mezot
+            errormaskara.innerHTML = erroruezenet; // Akkor beleirjuk a hibauzenetunket
+        }
+        valid = false; // a valid valtozo erteket hamisra csereljuk
+    }
+
+    return valid; // visszaterek a valid valtozoval
+}
