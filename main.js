@@ -6,7 +6,36 @@ document.body.appendChild(table) // a tablet hozzáadom a htmlhez
 table.appendChild(thead) // a theadet hozzáadom a tablehez
 table.appendChild(tbody) // a tbodyt hozzáadom a tablehez
 
+const tablazat = [{
+    htmlfor : "szarmazas",
+    labeltext : "Származás",
+    inputType : "text"
 
+},
+
+{
+    htmlfor : "szerzo1",
+    labeltext : "1. Szerző",
+    inputType : "text"
+},
+{
+    htmlfor : "szerzo1mu",
+    labeltext : "1. Szerző műve",
+    inputType : "text"
+},
+
+{
+    htmlfor : "szerzo2",
+    labeltext : "2. Szerző",
+    inputType : "text"
+},
+{
+    htmlfor : "szerzo2mu",
+    labeltext : "2. Szerző műve",
+    inputType : "text"
+}
+
+]
 
 
 const tomb = [   //tombba eltárolom a cellák adatait
@@ -41,8 +70,8 @@ const tomb = [   //tombba eltárolom a cellák adatait
         
 ]
 
-rendermenu(tomb) //meghivom a fuggvenyem
-generateform() //meghivom a fuggvenyt
+rendermenu(tomb,tbody) //meghivom a fuggvenyem
+generateform(tablazat) //meghivom a fuggvenyt
 
 const form = document.getElementById('form') // elkerem a form htmlelementet idval
 
@@ -78,12 +107,12 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     tomb.push(new_elements) // hozzaadom a tombhoz
     form.reset()
     tbody.innerHTML = " " //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
-    rendermenu(tomb) //ujra render fuggveny
+    rendermenu(tomb,tbody) //ujra render fuggveny
     
 }})
 
 
-fejlecem() //fuggvenyemet meghivom
+fejlecem(thead) //fuggvenyemet meghivom
 
 
 
