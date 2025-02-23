@@ -89,14 +89,25 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
         errorhiba.innerHTML = "" //töröljük az aktuális elem tartalmat
     }
     
+    let baj = true
 
-    if(egyszeruvalidacio(nemzetiseghtml,szerzokhtml,szerzo1muve)){ //ha minden mező megvan adva
-    
+   if(!validateForm(nemzetiseghtml, "Kőtelező megadni a nemzetiséget")){ //meghivom a validalas fuggvenyt
+    baj = false
+    }
+    if(!validateForm(szerzokhtml, "Kőtelező megadni a szerzőt")){ //meghivom a validalas fuggvenyt
+    baj = false
+    }
+    if(!validateForm(szerzo1muve, "Kőtelező megadni a szerző művét")){ //meghivom a validalas fuggvenyt
+    baj = false
+    }
+
+    if(baj){
     const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
     const szerzokhtmlValue = szerzokhtml.value// a value értékeket beteszem egy valtozoba
     const szerzo1muveValue = szerzo1muve.value// a value értékeket beteszem egy valtozoba
     const szerzo2muveValue = szerzo2muve.value// a value értékeket beteszem egy valtozoba
     const szerzo2htmlValue = szerzo2html.value// a value értékeket beteszem egy valtozoba
+    
     const new_elements = {  //az objektumba eltárolom az uj értékeket
         Nemzetiseg: nemzetiseghtmlValue,
         szerzo: szerzokhtmlValue,
@@ -104,9 +115,10 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
         szerzo2 : szerzo2muveValue,
         mu2 : szerzo2htmlValue
     }
+
     tomb.push(new_elements) // hozzaadom a tombhoz
     form.reset()
-    tbody.innerHTML = " " //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
+    tbody.innerHTML = "" //a tablazatom tartalmat ures stringreteszem , torlodik a tabla
     rendermenu(tomb,tbody) //ujra render fuggveny
     
 }})
