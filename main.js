@@ -101,6 +101,17 @@ form.addEventListener('submit',function(e){ // a formra irok egy esemenykezelot 
     baj = false
     }
 
+  
+
+    if (szerzo2muve.value !== "" || szerzo2html.value  !== "") {
+    if (!validateForm(szerzo2muve, "Ha megadsz egy második szerzőt, a művet is kötelező kitölteni")) { 
+        baj = false;
+    }
+    if (!validateForm(szerzo2html, "Ha megadsz egy második művet, a szerzőt is kötelező kitölteni")) { 
+        baj = false;
+    }
+}
+
     if(baj){
     const nemzetiseghtmlValue = nemzetiseghtml.value // a value értékeket beteszem egy valtozoba
     const szerzokhtmlValue = szerzokhtml.value// a value értékeket beteszem egy valtozoba
